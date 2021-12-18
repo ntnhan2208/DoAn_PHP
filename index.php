@@ -25,14 +25,12 @@ include('includes/config.php');
 
   <!-- Navigation -->
   <?php include('includes/header.php'); ?>
-
   <!-- Page Content -->
   <div class="container">
     <div class="row" style="margin-top: 4%">
       <!-- Blog Entries Column -->
       <div class="col-md-8">
-        <br>
-        <h1>TIN NỔI BẬT</h1>
+
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
 
           <div class="carousel-inner">
@@ -41,10 +39,9 @@ include('includes/config.php');
             while ($row = mysqli_fetch_array($query)) {
             ?>
               <div class="carousel-item">
+                <h5 style="color: black;"><?php echo htmlentities($row['posttitle']); ?></h5>
                 <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>"><img src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>" alt="<?php echo htmlentities($row['posttitle']); ?>" height="600" width="800"></a>
-                <div class="carousel-caption d-none d-md-block">
-                  <h4 style="color: black;"><?php echo htmlentities($row['posttitle']); ?></h4>
-                </div>
+                <h4 style="color: black;"><?php echo htmlentities($row['posttitle']); ?></h4>
               </div>
             <?php } ?>
           </div>
@@ -59,7 +56,7 @@ include('includes/config.php');
         </div>
         <br>
         <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-        <h1>TIN TỨC TRONG NGÀY</h1>
+        <h2>TIN TỨC TRONG NGÀY</h2>
         <!-- Blog Post -->
         <?php
         if (isset($_GET['pageno'])) {
@@ -78,19 +75,21 @@ include('includes/config.php');
         $query = mysqli_query($con, "select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by tblposts.id desc  LIMIT $offset, $no_of_records_per_page");
         while ($row = mysqli_fetch_array($query)) {
         ?>
-          <div class="card mb-4">
-            <img class="card-img-top" src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>" alt="<?php echo htmlentities($row['posttitle']); ?>">
-            <div class="card-body">
-              <h2 class="card-title"><?php echo htmlentities($row['posttitle']); ?></h2>
-              <p><b>Danh mục : </b> <a href="category.php?catid=<?php echo htmlentities($row['cid']) ?>"><?php echo htmlentities($row['category']); ?></a> </p>
 
-              <a href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>" class="btn btn-primary">Đọc tin</a>
+          <div class="row">
+            <div class="col-md-5">
+              <img src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>" alt="<?php echo htmlentities($row['posttitle']); ?>" height="200" width="300">
             </div>
-            <div class="card-footer text-muted">
-              Đăng ngày <?php echo htmlentities($row['postingdate']); ?>
-
+            <div class="col-md-7">
+              <a style="text-decoration:none; color:black;" href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>">
+                <h4><?php echo htmlentities($row['posttitle']); ?></h4>
+              </a>
+              <p><b>Danh mục: </b> <a style="text-decoration:none; color:black;" href="category.php?catid=<?php echo htmlentities($row['cid']) ?>"><?php echo htmlentities($row['category']); ?></a> </p>
+              <div>Đăng ngày <?php echo htmlentities($row['postingdate']); ?>
+              </div>
             </div>
           </div>
+          <hr style="height:1px;border-width:0;color:gray;background-color:gray">
         <?php } ?>
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
