@@ -34,7 +34,6 @@ include('includes/config.php');
 
       <!-- Blog Entries Column -->
       <div class="col-md-8">
-
         <!-- Blog Post -->
         <?php
         if ($_GET['catid'] != '') {

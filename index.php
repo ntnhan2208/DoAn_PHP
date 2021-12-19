@@ -30,9 +30,8 @@ include('includes/config.php');
     <div class="row" style="margin-top: 4%">
       <!-- Blog Entries Column -->
       <div class="col-md-8">
-
+        <!--Slide-->
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
           <div class="carousel-inner">
             <?php
             $query = mysqli_query($con, "select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by tblposts.id desc LIMIT 3");
@@ -54,9 +53,10 @@ include('includes/config.php');
             <span class="sr-only">Next</span>
           </a>
         </div>
+        <!--EndSlide-->
         <br>
         <hr style="height:2px;border-width:0;color:gray;background-color:gray">
-        <h2>TIN TỨC TRONG NGÀY</h2>
+        <h2>TIN TỨC</h2>
         <!-- Blog Post -->
         <?php
         if (isset($_GET['pageno'])) {
@@ -64,7 +64,7 @@ include('includes/config.php');
         } else {
           $pageno = 1;
         }
-        $no_of_records_per_page = 3;
+        $no_of_records_per_page = 4;
         $offset = ($pageno - 1) * $no_of_records_per_page;
 
         $total_pages_sql = "SELECT COUNT(*) FROM tblposts";
@@ -77,14 +77,14 @@ include('includes/config.php');
         ?>
 
           <div class="row">
-            <div class="col-md-5">
-              <img src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>" alt="<?php echo htmlentities($row['posttitle']); ?>" height="200" width="300">
+            <div class="col-md-5 col-xs-12">
+              <img src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>" alt="<?php echo htmlentities($row['posttitle']); ?>" height="100%" width="100%">
             </div>
             <div class="col-md-7">
-              <a style="text-decoration:none; color:black;" href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>">
+              <a style="text-decoration:none;" href="news-details.php?nid=<?php echo htmlentities($row['pid']) ?>">
                 <h4><?php echo htmlentities($row['posttitle']); ?></h4>
               </a>
-              <p><b>Danh mục: </b> <a style="text-decoration:none; color:black;" href="category.php?catid=<?php echo htmlentities($row['cid']) ?>"><?php echo htmlentities($row['category']); ?></a> </p>
+              <p><b>Danh mục: </b> <a style="text-decoration:none;" href="category.php?catid=<?php echo htmlentities($row['cid']) ?>"><?php echo htmlentities($row['category']); ?></a> </p>
               <div>Đăng ngày <?php echo htmlentities($row['postingdate']); ?>
               </div>
             </div>
