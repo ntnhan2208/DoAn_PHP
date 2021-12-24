@@ -14,15 +14,12 @@ if (isset($_POST['submit'])) {
       $email = $_POST['email'];
       $comment = $_POST['comment'];
       $postid = intval($_GET['nid']);
-      $st1 = '1';
+      $st1 = '0';
       $query = mysqli_query($con, "insert into tblcomments(postId,name,email,comment,status) values('$postid','$name','$email','$comment','$st1')");
       if ($query) :
-        //echo "<script>alert('Bình luận của bạn đã được ghi nhận. Bình luận sẽ được hiển thị sau khi quản trị viên xem xét');</script>";
+        echo "<script>alert('Bình luận của bạn đã được ghi nhận. Bình luận sẽ được hiển thị sau khi quản trị viên xem xét');</script>";
         unset($_SESSION['token']);
         error_reporting(0);
-      else :
-      //echo "<script>alert('Vui lòng thử lại sau!');</script>";
-
       endif;
     }
   }

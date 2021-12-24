@@ -17,8 +17,8 @@
         $mail->isSMTP();
         $mail->Host = "smtp.gmail.com";
         $mail->SMTPAuth = true;
-        $mail->Username = "nhan.dh51800242@gmail.com"; 
-        $mail->Password = '22081996badboytn';
+        $mail->Username = "";// điền email muốn nhận liên hệ tại đây
+        $mail->Password = '';// điền mật khẩu của email trên
         $mail->Port = 465;
         $mail->SMTPSecure = "ssl";
 

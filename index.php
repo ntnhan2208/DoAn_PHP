@@ -114,9 +114,7 @@ include('includes/config.php');
           </li>
           <li class="page-item"><a href="?pageno=<?php echo $total_pages; ?>" class="page-link">Trang cuối</a></li>
         </ul>
-
       </div>
-
       <!-- Sidebar Widgets Column -->
       <?php include('includes/sidebar.php'); ?>
     </div>
@@ -132,7 +130,7 @@ include('includes/config.php');
 <script type="text/javascript">
   $(document).ready(function() {
     $('.carousel').carousel({
-      interval: 1000
+      interval: 3000
     });
 
     $('.carousel-item')[0].className = "carousel-item active";
